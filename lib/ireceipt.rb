@@ -1,0 +1,1 @@
+require 'ireceipt/version'

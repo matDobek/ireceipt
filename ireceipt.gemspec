@@ -5,10 +5,10 @@ Gem::Specification.new do |s|
   s.name        = 'ireceipt'
   s.authors     = ['Mateusz Dobek']
   s.email       = 'mat.dobek@gmail.com'
-  s.summary     = 'iTunes In-App Purchase Receipt Validation'
-  s.description = ''
-  s.homepage    = 'http://rubygems.org/gems/ireceipt'
-  s.license     = 'MIT'
+  s.summary     = 'TODO: add summary'
+  s.description = 'TODO: add description'
+  s.homepage    = 'TODO: add rubygems address'
+  s.license     = 'The Beer-ware lincense'
   s.version     = Ireceipt::VERSION
   s.platform    = Gem::Platform::RUBY
 
