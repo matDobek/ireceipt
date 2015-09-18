@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ireceipt::Response::Base do
+describe Ireceipt::Parser::Base do
   let(:base) { described_class.new(attributes) }
   let(:attributes) do
     {

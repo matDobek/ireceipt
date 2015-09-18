@@ -1,6 +1,6 @@
 require 'json'
 
-module Ireceipt::Response
+module Ireceipt::Parser
   class Base
     def initialize(attributes)
       @attributes = Hash(attributes)
