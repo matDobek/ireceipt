@@ -1,2 +1,3 @@
 require 'ireceipt/version'
-require 'ireceipt/response/base'
+require 'ireceipt/parser/base'
+require 'ireceipt/parser/response'
