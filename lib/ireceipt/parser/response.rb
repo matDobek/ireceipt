@@ -16,7 +16,7 @@ module Ireceipt::Parser
     private
 
     def status
-      @status ||= attributes.fetch("status")
+      @status ||= attributes.fetch("status").to_i
     end
 
     def receipt
