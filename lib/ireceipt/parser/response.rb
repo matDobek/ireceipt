@@ -16,19 +16,19 @@ module Ireceipt::Parser
     private
 
     def status
-      attributes.fetch("status")
+      @status ||= attributes.fetch("status")
     end
 
     def receipt
-      attributes.fetch("receipt") { Hash.new }
+      @receipt ||= attributes.fetch("receipt") { Hash.new }
     end
 
     def latest_receipt_info
-      attributes.fetch("latest_receipt_info") { Array.new }
+      @latest_receipt_info ||= attributes.fetch("latest_receipt_info") { Array.new }
     end
 
     def latest_receipt
-      attributes.fetch("latest_receipt") { "" }
+      @latest_receipt ||= attributes.fetch("latest_receipt") { "" }
     end
   end
 end
