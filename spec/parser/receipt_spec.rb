@@ -3,9 +3,20 @@ require 'spec_helper'
 describe Ireceipt::Parser::Receipt do
   describe "#to_hash" do
     context "when no keys" do
-      it "returns empty hash" do
+      it "returns hash with nil values" do
+        expected_hash = {
+          app_item_id: nil,
+          bundle_id: nil,
+          application_version: nil,
+          download_id: nil,
+          request_date: nil,
+          original_purchase_date: nil,
+          in_app: nil
+        }
+
         result = described_class.new({}).to_hash
-        expect(result).to eq({})
+
+        expect(result).to eq(expected_hash)
       end
     end
 

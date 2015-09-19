@@ -11,7 +11,7 @@ module Ireceipt::Parser
         request_date: request_date,
         original_purchase_date: original_purchase_date,
         in_app: in_app,
-      }.delete_if { |_, value| value.nil? }
+      }
     end
 
     private
