@@ -23,6 +23,14 @@ module Ireceipt::Parser
       attributes.key?(key.to_s)
     end
 
+    def fetch(key)
+      attributes.fetch(key.to_s)
+    end
+
+    def boolean_of(key)
+      attributes.fetch(key.to_s) == "true"
+    end
+
     def integer_of(key)
       attributes.fetch(key.to_s).to_i
     end
