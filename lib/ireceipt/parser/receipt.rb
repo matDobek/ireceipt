@@ -1,4 +1,5 @@
 require 'ireceipt/parser/base'
+require 'ireceipt/parser/in_app_receipt'
 
 module Ireceipt::Parser
   class Receipt < Base
@@ -41,7 +42,11 @@ module Ireceipt::Parser
     end
 
     def in_app
-      []
+      return @in_app unless @in_app.nil?
+
+      if key_present?("in_app")
+        @in_app = Array(fetch("in_app")).map { |item| InAppReceipt.new(item).to_hash }
+      end
     end
   end
 end

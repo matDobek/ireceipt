@@ -37,24 +37,23 @@ describe Ireceipt::Parser::Receipt do
           "original_purchase_date_ms" => "1375340400000",
           "original_purchase_date_pst" => "2013-08-01 00:00:00 America/Los_Angeles",
           "original_application_version" => "1.0",
-          "in_app" => []
+          "in_app" => [
+            { "product_id" => "foobar" },
+            { "product_id" => "barfoo"}
+          ]
         }
       end
 
       it "returns expected hash" do
-        expected_hash = {
-          app_item_id: 0,
-          bundle_id: "com.foo.bar",
-          application_version: 0,
-          download_id: 0,
-          request_date: DateTime.new(2015, 9, 18, 20, 10, 3),
-          original_purchase_date: DateTime.new(2013, 8, 1, 7),
-          in_app: []
-        }
-
         result = described_class.new(receipt).to_hash
 
-        expect(result).to eq(expected_hash)
+        expect(result[:app_item_id]).to eq(0)
+        expect(result[:bundle_id]).to eq("com.foo.bar")
+        expect(result[:application_version]).to eq(0)
+        expect(result[:download_id]).to eq(0)
+        expect(result[:request_date]).to eq DateTime.new(2015, 9, 18, 20, 10, 3)
+        expect(result[:original_purchase_date]).to eq DateTime.new(2013, 8, 1, 7)
+        expect(result[:in_app].count).to eq(2)
       end
     end
   end
