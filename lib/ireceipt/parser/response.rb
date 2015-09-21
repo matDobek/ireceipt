@@ -1,4 +1,6 @@
 require 'ireceipt/parser/base'
+require 'ireceipt/parser/receipt'
+require 'ireceipt/parser/in_app_receipt'
 
 module Ireceipt::Parser
   # Detailed description:
@@ -20,15 +22,23 @@ module Ireceipt::Parser
     end
 
     def receipt
-      @receipt ||= attributes.fetch("receipt") { Hash.new }
+      return @receipt unless @receipt.nil?
+
+      if key_present?("receipt")
+        @receipt = Receipt.new(fetch("receipt")).to_hash
+      end
     end
 
     def latest_receipt_info
-      @latest_receipt_info ||= attributes.fetch("latest_receipt_info") { Array.new }
+      return @latest_receipt_info unless @latest_receipt_info.nil?
+
+      if key_present?("latest_receipt_info")
+        @latest_receipt_info = Array(fetch("latest_receipt_info")).map { |item| InAppReceipt.new(item).to_hash }
+      end
     end
 
     def latest_receipt
-      @latest_receipt ||= attributes.fetch("latest_receipt") { "" }
+      @latest_receipt ||= attributes.fetch("latest_receipt") { nil }
     end
   end
 end
