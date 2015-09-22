@@ -1,4 +1,5 @@
 require 'ireceipt/version'
+require 'ireceipt/client'
 require 'ireceipt/parser/base'
 require 'ireceipt/parser/response'
 require 'ireceipt/parser/receipt'
