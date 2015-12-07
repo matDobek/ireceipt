@@ -19,28 +19,33 @@ module Ireceipt::Parser
 
     attr_reader :attributes
 
-    def key_present?(key)
-      attributes.key?(key.to_s)
-    end
-
-    def fetch(key)
-      attributes.fetch(key.to_s)
-    end
-
     def boolean_of(key)
-      attributes.fetch(key.to_s) == "true"
+      safe_fetch do
+        attributes.fetch(key.to_s) == "true"
+      end
     end
 
     def integer_of(key)
-      attributes.fetch(key.to_s).to_i
+      safe_fetch do
+        attributes.fetch(key.to_s).to_i
+      end
     end
 
     def string_of(key)
-      attributes.fetch(key.to_s).to_s
+      safe_fetch do
+        attributes.fetch(key.to_s).to_s
+      end
     end
 
     def datetime_of(key)
-      DateTime.parse(attributes.fetch(key.to_s))
+      safe_fetch do
+        DateTime.parse(attributes.fetch(key.to_s))
+      end
+    end
+
+    def safe_fetch
+      yield
+    rescue ::KeyError
     end
   end
 end
