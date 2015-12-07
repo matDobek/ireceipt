@@ -11,11 +11,10 @@ describe Ireceipt::Parser::Receipt do
           download_id: nil,
           request_date: nil,
           original_purchase_date: nil,
-          in_app: nil
+          in_app: []
         }
 
         result = described_class.new({}).to_hash
-
         expect(result).to eq(expected_hash)
       end
     end

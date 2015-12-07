@@ -10,16 +10,24 @@ describe Ireceipt::Parser::Response do
         }
       end
 
-      it "returns hash with nil values" do
+      it "returns expected hash" do
         expected_hash = {
           status: 0,
-          receipt: nil,
-          latest_receipt_info: nil,
+          receipt:
+          {
+            app_item_id: nil,
+            bundle_id: nil,
+            application_version: nil,
+            download_id: nil,
+            request_date: nil,
+            original_purchase_date: nil,
+            in_app: []
+          },
+          latest_receipt_info: [],
           latest_receipt: nil
         }
 
         result = described_class.new(response).to_hash
-
         expect(result).to eq(expected_hash)
       end
     end
@@ -45,14 +53,13 @@ describe Ireceipt::Parser::Response do
             download_id: nil,
             request_date: nil,
             original_purchase_date: nil,
-            in_app: nil
+            in_app: []
           },
           latest_receipt_info: [],
           latest_receipt: "receipt"
         }
 
         result = described_class.new(response).to_hash
-
         expect(result).to eq(expected_hash)
       end
     end

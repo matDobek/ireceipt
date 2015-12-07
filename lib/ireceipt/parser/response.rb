@@ -22,19 +22,15 @@ module Ireceipt::Parser
     end
 
     def receipt
-      return @receipt unless @receipt.nil?
-
-      if key_present?("receipt")
-        @receipt = Receipt.new(fetch("receipt")).to_hash
-      end
+      @receipt ||= Receipt.new(
+        attributes.fetch("receipt") { nil }
+      ).to_hash
     end
 
     def latest_receipt_info
-      return @latest_receipt_info unless @latest_receipt_info.nil?
-
-      if key_present?("latest_receipt_info")
-        @latest_receipt_info = Array(fetch("latest_receipt_info")).map { |item| InAppReceipt.new(item).to_hash }
-      end
+      @latest_receipt_info ||= Array(
+        attributes.fetch("latest_receipt_info") { nil }
+      ).map { |item| InAppReceipt.new(item).to_hash }
     end
 
     def latest_receipt
